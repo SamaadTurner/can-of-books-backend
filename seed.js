@@ -4,7 +4,10 @@ require('dotenv').config();
 const mongoose = require('mongoose');
 const Book = require('./bookSchema.js');
 const MONGODB_URL = process.env.MONGODB_URL;
-mongoose.connect(MONGODB_URL);
+mongoose.connect(MONGODB_URL).catch(error => {
+    console.log('ERROR!!! ', error);
+});
+
 
 
 let harryPotter1 = new Book({
@@ -63,4 +66,6 @@ harryPotter2.save(),
 harryPotter3.save(),
 ]).then(documents => {
     console.log(documents);
+}).catch(error =>{
+    console.log('ERROR!', error);
 });
