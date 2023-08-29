@@ -13,7 +13,7 @@ const bookSchema = new mongoose.Schema({
     status: {
         type: String,
         required: true,
-        enum: ['Available', 'Checked', 'On Hold'],
+        enum: ['Available', 'Checked Out', 'On Hold'],
 
     },
 
