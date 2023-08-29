@@ -15,7 +15,7 @@ const PORT = process.env.PORT || 3001;
 console.log("HERE");
 app.get('/books', async (req, res) => {
   try  {
-    const books = await Book.find({status: 'Checked Out'});
+    const books = await Book.find({});
     console.log("HERE");
     res.json(books);
   } catch (error) {
