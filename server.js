@@ -48,4 +48,21 @@ app.post('/books', async (req, res) => {
      }
   });
 
+
+
+  app.delete('/books/:id', async (req,res) => {
+    try{
+      if(!req.params.id) {
+        res.status(404).send("Please give a book Id");
+      }else{
+        await Book.deleteOne({_id: req.params.id});
+      }
+      return res.send("REQUEST RECIEVED!");
+    }catch(error){
+      console.log(error);
+      res.status(500).json({error: 'Server cannot process your request.'})
+    }
+  });
+  
+
 app.listen(PORT, () => console.log(`listening on ${PORT}`));
