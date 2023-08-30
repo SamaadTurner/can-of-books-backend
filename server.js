@@ -64,5 +64,19 @@ app.post('/books', async (req, res) => {
     }
   });
   
+  app.put('/books/:id', async (req,res) => {
+    let id = req.params.id;
+    try{
+      await Book.replaceOne({_id: id}, req.body); // req.body - the express object for all data.
+      let freshBook = await Book.findOne({_id: id});
+      res.status(200).json(freshBook);
+    }catch (error){
+      console.log('The error is: ' , error);
+      res.status(400).send(error);
+    }  
+
+  });
+  
+  
 
 app.listen(PORT, () => console.log(`listening on ${PORT}`));
