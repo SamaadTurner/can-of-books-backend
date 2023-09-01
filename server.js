@@ -4,13 +4,15 @@ const mongoose = require('mongoose');
 const Book = require('./bookSchema.js');
 const express = require('express');
 const cors = require('cors');
+
 const MONGODB_URL = process.env.MONGODB_URL;
 
 mongoose.connect(MONGODB_URL);
 const app = express();
 app.use(cors());
 app.use(express.json());
-
+const authorize = require('./auth/authorize.js');
+app.use(authorize); // apply authentication token checking.
 const PORT = process.env.PORT || 3001;
 console.log("HERE");
 
